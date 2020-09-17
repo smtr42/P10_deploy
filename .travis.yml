@@ -5,10 +5,10 @@ python:
 before_script:
   - pip install -r requirements.txt
 
-env: DJANGO_SETTINGS_MODULE="P10_deploy.settings"
+env: DJANGO_SETTINGS_MODULE="P10_deploy.settings.production"
 
 services:
   - postgresql
 
 script:
-  - ./manage.py test
+  - ./manage.py test --settings=settings.__init__
