@@ -1,11 +1,11 @@
 language: python
 python:
-  - '3.7'
+  - "3.7"
 
 before_script:
   - pip install -r requirements.txt
 
-env: DJANGO_SETTINGS_MODULE="disquP10_deployaire_project.settings"
+env: DJANGO_SETTINGS_MODULE="P10_deploy.settings"
 
 services:
   - postgresql
