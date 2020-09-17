@@ -1,3 +1,4 @@
+dist: xenial
 language: python
 python:
   - "3.7"
@@ -9,6 +10,7 @@ env: DJANGO_SETTINGS_MODULE="P10_deploy.settings.production"
 
 services:
   - postgresql
+  - xvfb
 
 script:
   - ./manage.py test --settings=settings.travis
