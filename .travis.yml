@@ -11,4 +11,4 @@ services:
   - postgresql
 
 script:
-  - ./manage.py test --settings=settings.__init__
+  - ./manage.py test --settings=settings.travis
