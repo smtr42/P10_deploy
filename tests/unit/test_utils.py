@@ -7,6 +7,22 @@ from openfoodfact.utils import Cleaner, RequestData
 
 class UtilsTest(TestCase):
 
+    def test_product_request(self):
+        def fetch_cat_mock():
+            return ["sabji"]
+
+        request_data = RequestData()
+
+        with patch.object(request_data, "_fetch_category", fetch_cat_mock):
+            self.assertIsInstance(request_data.exec(20), dict)
+            self.assertEqual(
+                request_data.exec(20)["sabji"]["products"][0][
+                    "product_name_fr"
+                ],
+                "Indisches Sabji",
+            )
+            self.assertIn("sabji",request_data.exec(20))
+
 
     def test_category_request(self):
         def fetch_products_mock(*args, **kwargs):
@@ -40,28 +56,7 @@ class UtilsTest(TestCase):
             request_data, "_fetch_products", fetch_products_mock
         ):
             self.assertIsInstance(request_data.exec(20), dict)
-            self.assertEqual(
-                request_data.list_cat,
-                [
-                    "Aliments et boissons à base de végétaux",
-                    "Aliments d'origine végétale",
-                    "Snacks",
-                    "Snacks sucrés",
-                    "Boissons",
-                    "Produits laitiers",
-                    "Viandes",
-                    "Aliments à base de fruits et de légumes",
-                    "Plats préparés",
-                    "Céréales et pommes de terre",
-                    "Produits fermentés",
-                    "Produits laitiers fermentés",
-                    "Produits à tartiner",
-                    "Biscuits et gâteaux",
-                    "Charcuteries",
-                    "Epicerie",
-                    "Petit-déjeuners",
-                ],
-            )
+            self.assertIn("Aliments et boissons à base de végétaux", request_data.list_cat)
 
 
 class TestCleaner(TestCase):
