@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
     help = "Fetch data from OpenFoodFact API and build database"
 
-    def handle(self, page_size=500, *args, **kwargs):
+    def handle(self, page_size=50, *args, **kwargs):
         """Execution when the command is called."""
         data = req_and_clean(page_size)
         Product.objects.delete_data_in_tables()
