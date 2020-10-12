@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+
+def trigger_error(request):
+    a = 1 / 0
+    return request
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("pages.urls")),
@@ -25,4 +31,5 @@ urlpatterns = [
     path(
         "autocomplete/", include("autocomplete.urls", namespace="autocomplete")
     ),
+    path('sentry/', trigger_error),
 ]
