@@ -19,4 +19,4 @@ services:
   - xvfb
 
 script:
-  - ./manage.py test --settings=settings.travis
+  - ./manage.py test --settings=core.settings.travis
