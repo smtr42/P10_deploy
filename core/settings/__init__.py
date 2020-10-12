@@ -3,13 +3,10 @@ For production see production.py only on the server
 """
 
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 AUTH_USER_MODEL = "users.User"
 
@@ -136,7 +133,7 @@ ACCOUNT_EMAIL_VERIFICATION = "none"
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.normpath(os.path.join(PROJECT_DIR, "staticfiles"))
