@@ -1,6 +1,6 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.firefox.webdriver import WebDriver
-
+import selenium.common.exceptions as selexcep
 
 class MySeleniumTests(StaticLiveServerTestCase):
     fixtures = ["user.json"]
@@ -22,6 +22,11 @@ class MySeleniumTests(StaticLiveServerTestCase):
         email_input.send_keys("test@test.fr")
         password_input = self.selenium.find_element_by_name("password")
         password_input.send_keys("Aa123456789-")
-        self.selenium.find_element_by_xpath(
-            '//button[text()="Se connecter"]'
-        ).click()
+        try:
+            self.selenium.find_element_by_xpath(
+                '//button[text()="Se connecter"]'
+            ).click()
+        except selexcep.NoSuchElementException:
+            self.selenium.find_element_by_xpath(
+                '//button[text()="Connexion"]'
+            ).click()
